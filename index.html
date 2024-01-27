@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Negative Numbers</title>
+    <script>
+        function highlightNegativeNumbers(array) {
+            if (!Array.isArray(array)) {
+                console.error("Ошибка: Переданный аргумент не является массивом.");
+                return false;
+            }
+
+            let hasNegative = false;
+            array.forEach(function (element) {
+                if (typeof element === 'number' && element < 0) {
+                    hasNegative = true;
+                }
+            });
+
+            if (!hasNegative) {
+                console.log("В массиве нет отрицательных чисел.");
+                return true;
+            }
+
+            let output = document.getElementById("output");
+            output.innerHTML = "<p>Массив с выделенными отрицательными числами:</p><ul>";
+            array.forEach(function (element) {
+                if (typeof element === 'number' && element < 0) {
+                    output.innerHTML += `<li style="color: red;">${element}</li>`;
+                } else {
+                    output.innerHTML += `<li>${element}</li>`;
+                }
+            });
+            output.innerHTML += "</ul>";
+
+            return true;
+        }
+        let testArray = [1, -2, 3, -4, 5];
+        window.onload = function () {
+            highlightNegativeNumbers(testArray);
+        };
+    </script>
+</head>
+<body>
+    <div id="output"></div>
+</body>
+</html>
